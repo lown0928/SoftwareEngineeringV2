@@ -1,0 +1,138 @@
+﻿@model List<SoftwareEngineeringP1.Models.Flight>
+
+<div>
+    <table class="table table-striped" id="header-table">
+        
+        <tr class="">
+            <td><b>Name</b></td>
+            <td><b>Departure</b></td>
+            <td><b>Destination</b></td>
+            <td><b>Departure Time</b></td>
+            <td><b>Arrival Time</b></td>
+            <td><b>Price</b></td>
+            <td></td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td><b>Edit</b></td>
+                <td></td>
+                
+            }
+        </tr>
+        @foreach (var flight in Model)
+        {
+            <tr class="" >
+                <td>@flight.Name</td>
+                <td>@flight.SourceAirport.City</td>
+                <td>@flight.DestinationAirport.City</td>
+                <td>@flight.DepartureTime</td>
+                <td>@flight.ArrivalTime</td>
+                <td>$@flight.Price</td>
+                <td><button data-id="@flight.Id" class="btn btn-default flightClickAction">View</button></td>
+                
+                @if (User.IsInRole("Admin"))
+                {
+                    <td> <button data-id="@flight.Id" title="" type="button" class="btn btn-danger" data-original-title="Remove from list"><i class="glyphicon glyphicon-trash"></i></button></td>
+                    <td></td>
+                }
+               
+            </tr>
+        }
+    </table>
+</div>
+
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+
+        // Click function for redirecting to the flight when a row is clicked on.
+        $('.flightClickAction').off();
+        $('.flightClickAction').on('click', function (event) {
+            event.preventDefault();
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: "/Home/GetFlightViewer",
+                data: "flightId=" + id,
+                method: "POST",
+                success: function (result) {
+                    $("#flightViewContainer").html(result);
+                    $("#FlightViewer").modal("show");
+                    rebindhandles();
+                }
+            });
+        });
+
+        $(".btn-danger").off();
+        $('.btn-danger').on('click', function (event) {
+            event.preventDefault();
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: "/Home/DeleteFlights",
+                data: "flightID=" + id,
+                method: "POST",
+                success: function () {
+                    
+                }
+            });
+        });
+
+        $("table#header-table").on("click", ".btn-danger", function () {
+            $(this).closest('tr').remove();
+        });
+        
+    });
+
+    // AJAX handle for binding the on click function for editing flights. 
+    // seperate function because dynamically loading content needs to be bound.
+    var rebindhandles = function () {
+
+        $(".editFlightBtn").off();
+        $(".editFlightBtn").on('click', function (event) {
+            event.preventDefault();
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: "/Home/GetEditFlightViewer",
+                data: "flightId=" + id,
+                method: "POST",
+                success: function (result) {
+                    $("#modelBody").html(result).fadeIn("slow");
+                    rebindhandles();
+                }
+            });
+        });
+
+        $("#saveFlight").off();
+        $("#saveFlight").on('click', function () {
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: "/Home/EditFlight",
+                data: $("#EditFlightForm").serialize(),
+                method: "POST",
+                success: function (result) {
+                    $("#modelBody").html(result).fadeIn("slow");
+                    rebindhandles();
+                    $("#FlightViewer").modal("toggle");
+                    $("#searchFlights").click();
+                }
+            });
+        });
+
+        $("table#header-table").on("click", ".btn-danger", function () {
+            $(this).closest('tr').remove();
+        });
+
+        $('.btn-danger').off();
+        $('.btn-danger').on('click', function (event) {
+            event.preventDefault();
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: "/Home/DeleteFlights",
+                data: "flightID=" + id,
+                method: "POST",
+                success: function () {
+
+                }
+            });
+        }); 
+    }
+
+</script>
