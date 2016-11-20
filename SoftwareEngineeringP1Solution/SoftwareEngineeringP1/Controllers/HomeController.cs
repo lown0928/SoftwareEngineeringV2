@@ -21,6 +21,11 @@ namespace SoftwareEngineeringP1.Controllers
             return View();
         }
 
+        public ActionResult ShoppingCart()
+        {
+            return View();
+        }
+
         [Authorize(Roles = "Admin")]
         public ActionResult About()
         {

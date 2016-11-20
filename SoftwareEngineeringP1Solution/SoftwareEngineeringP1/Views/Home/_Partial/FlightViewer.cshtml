@@ -30,18 +30,22 @@
             
             @* Fake footer *@
             <div class="row" style="margin: 5px;">
-                <div class="col-md-7 col-md-offset-5 text-right">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Return</button>
-                    
+                <div class="col-md-7 col-md-offset-4 text-right">
+                    <div class="form-group col-sm-3">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Return</button>
+                    </div>
                     @if (User.IsInRole("Admin"))
                     {
-                        <button type="button" data-id="@Model.Flight.Id" class="btn btn-default editFlightBtn"><span class="glyphicon glyphicon-edit"></span>Edit</button>
+                        <div class="form-group col-sm-3">
+                            <button type="button" data-id="@Model.Flight.Id" class="btn btn-default editFlightBtn"><span class="glyphicon glyphicon-edit"></span>Edit</button>
+                        </div>
                     }
-
-                    <button type="button" class="btn btn-success">Book Flight</button>
+                    <div class="form-group col-sm-3">
+                        <a href="~/Home/ShoppingCart" type="button" class="btn btn-success">Add to Shopping Cart</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 

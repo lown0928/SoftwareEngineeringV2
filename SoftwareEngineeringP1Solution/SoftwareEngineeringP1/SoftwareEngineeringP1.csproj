@@ -267,6 +267,7 @@
     <Content Include="Views\Home\AllFights.cshtml" />
     <Content Include="Views\Home\_Partial\FlightViewer.cshtml" />
     <Content Include="Views\Home\_Partial\EditFlightViewer.cshtml" />
+    <Content Include="Views\Home\ShoppingCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
