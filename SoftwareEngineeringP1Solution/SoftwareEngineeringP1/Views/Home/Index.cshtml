@@ -66,6 +66,15 @@
 
         // This should be checked for correctness. 
         $(document).ready(function () {
+            
+            $.ajax({
+                url: "/Home/SearchFlights",
+                data: $("#searchForm").serialize(),
+                method: "POST",
+                success: function (result) {
+                    $('#resultsTable').html(result);
+                }
+            });
 
             // Ajax method that calls the searching method, and repopulates the results of the table. 
             $('#searchFlights').on('click', function (event) {
