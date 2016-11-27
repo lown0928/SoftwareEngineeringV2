@@ -61,7 +61,7 @@ namespace SoftwareEngineeringP1.DataAccess
                                             // Linq that applies the search criteria.
                                             ((destination == null || f.SourceAirport.City.Contains(destination)) &&
                                             (arrival == null  || f.DestinationAirport.City.Contains(arrival)) &&
-                                            (country == null || (f.DestinationAirport.Country.Contains(country) && 
+                                            (country == null || (f.DestinationAirport.Country.Contains(country) || 
                                                                 f.SourceAirport.Country.Contains(country))) )
                                                                 ).ToList();
         }
