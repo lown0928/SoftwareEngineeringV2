@@ -2,8 +2,31 @@
     ViewBag.Title = "Home Page";
 }
 @model SoftwareEngineeringP1.Models.SearchPageForm
-  
+<head>
+    <style>
+        #banner {
+            position:absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            width: 100%;
+            height: 200px;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <img id="banner" src="~/Images/flight_banner.jpg" alt="Banner Img" />
+</body>
 <br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
 @if (User.IsInRole("Admin"))
 {
     <form method="post" id="addFlightForm" action="/Home/AddFlights">
