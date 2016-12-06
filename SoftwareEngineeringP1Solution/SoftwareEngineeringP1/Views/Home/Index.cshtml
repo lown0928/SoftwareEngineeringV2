@@ -14,9 +14,31 @@
             z-index: -1;
         }
     </style>
+    <script type="text/javascript">
+        var picPaths = ['/Images/flight_banner.jpg', '/Images/New_York_City.jpg', '/Images/Skyline_banner.jpg', '/Images/Tokyo_night.jpg', '/Images/Tokyo_Taito_Banner.jpg'];
+            var curPic = -1;
+            //preload the images for smooth animation
+            var imgO = new Array();
+            for(i=0; i < picPaths.length; i++) {
+                imgO[i] = new Image();
+                imgO[i].src = picPaths[i];
+            }
+
+            function swapImage() {
+                curPic = (++curPic > picPaths.length-1)? 0 : curPic;
+                imgCont.src = imgO[curPic].src;
+                setTimeout(swapImage,4000);
+            }
+
+            window.onload=function() {
+                imgCont = document.getElementById('banner');
+                swapImage();
+            }
+    </script>
+
 </head>
 <body>
-    <img id="banner" src="~/Images/flight_banner.jpg" alt="Banner Img" />
+    <img id="banner" src="" alt="Banner Img" />
 </body>
 <br />
 <br />
