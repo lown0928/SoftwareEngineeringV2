@@ -6,7 +6,18 @@
     <title>Penguin Flights</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+<style>
+    #footer{
+    background-color: #556B6D;
+    width: 100%;
+    height: 175px;
+    bottom: 0;
+    position: relative;
+    text-align: center;
+    color: #ffd800;
+    }
 
+</style>
 </head>
 <body>
     <div class="navbar  navbar-fixed-top" style="background-color:#556B6D;">
@@ -32,5 +43,59 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <div class="row" id="footer">
+        <div class="col-md-4">
+            <br />
+            <p>Share with Us</p>
+        
+            <div class="fb-share-button" data-href="https://www.facebook.com/" data-layout="button" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2F&amp;src=sdkpreparse">Share</a></div>
+        
+            <p>  </p>
+
+            <div>
+            <a href="https://twitter.com/uwstout" class="twitter-follow-button" data-show-count="false">Follow</a>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+             </div>
+
+            <p>   </p>
+
+            <script src="https://apis.google.com/js/platform.js"></script>
+            <div id="link" class="g-ytsubscribe" data-channel="YouTube" data-layout="default" data-count="hidden"></div>
+        </div>
+
+        <div class="col-md-4">
+            <br />
+            <p>© 2016 Penguin Flights | All Rights Reserved. </p>
+            <p>About Penguin Flights</p>
+            <p>Our mission is to provide our customers with the best and safest traveling experiences. We strive to provide the best prices and destination trips. Thank you for choosing Penguin Flights and happy travels. </p>
+        </div>
+
+        <div class="col-md-4">
+            <br />
+            <p>Contact Us</p>
+
+            <p>Srum Master: <a href="mailto:lown0928@my.uwstout.edu?Subject=Contact%20Us" target="_top">Nick Low</a>
+            </p>
+
+            <p>Relations Manger: <a href="mailto:robbins0292@my.uwstout.edu?Subject=Contact%20Us" target="_top">Amanda Robbins</a>
+            </p>
+
+            <p>Code Monkey: <a href="mailto:deblock0482@my.uwstout.edu?Subject=Contact%20Us" target="_top">Josua de Block</a>
+            </p>
+        </div>
+
+      </div>
+
 </body>
 </html>
+
+<div id="fb-root"></div>
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

@@ -3,6 +3,54 @@
     ViewBag.Title = "Register";
 }
 
+<head>
+    <style>
+        #banner {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            width: 100%;
+            height: 200px;
+            z-index: -1;
+        }
+    </style>
+    <script type="text/javascript">
+        var picPaths = ['/Images/land-sea-banner.jpg', '/Images/Sydney_banner.jpg', '/Images/Alaska_banner.jpg', '/Images/Spain.jpg', '/Images/Vilnius_old_town_banner.jpg'];
+            var curPic = -1;
+            //preload the images for smooth animation
+            var imgO = new Array();
+            for(i=0; i < picPaths.length; i++) {
+                imgO[i] = new Image();
+                imgO[i].src = picPaths[i];
+            }
+
+            function swapImage() {
+                curPic = (++curPic > picPaths.length-1)? 0 : curPic;
+                imgCont.src = imgO[curPic].src;
+                setTimeout(swapImage,4000);
+            }
+
+            window.onload=function() {
+                imgCont = document.getElementById('banner');
+                swapImage();
+            }
+    </script>
+
+</head>
+<body>
+    <img id="banner" src="" alt="Banner Img" />
+</body>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
 <h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))

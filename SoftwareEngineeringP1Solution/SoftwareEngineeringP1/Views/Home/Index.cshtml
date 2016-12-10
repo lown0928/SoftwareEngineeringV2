@@ -5,7 +5,7 @@
 <head>
     <style>
         #banner {
-            position:absolute;
+            position: absolute;
             top: 0px;
             left: 0px;
             right: 0px;
@@ -14,6 +14,7 @@
             z-index: -1;
         }
     </style>
+
     <script type="text/javascript">
         var picPaths = ['/Images/flight_banner.jpg', '/Images/New_York_City.jpg', '/Images/Skyline_banner.jpg', '/Images/Tokyo_night.jpg', '/Images/Tokyo_Taito_Banner.jpg'];
             var curPic = -1;
@@ -54,22 +55,22 @@
     <form method="post" id="addFlightForm" action="/Home/AddFlights">
         <div class="row">
             @* This is a section of the page that only the Admin can see to make inputs to add a new flight. *@
-                <div class="form-group col-md-3">
-                    Starting Id Number:
-                    <input type="text" class="form-control " id="startingIdNumber" name="startingIdNumber" placeholder="Starting Id Number"/>
-                </div>
-                <div class="form-group col-md-3">
-                    Ending Id Number:
-                    <input type="text" class="form-control" id="endingIdNumber" name="endingIdNumber" placeholder="Ending Id Number"/>
-                </div>
-                <div class="form-group col-md-2">
-                    Flight Time:
-                    <input type="text" class="form-control" id="newFlightTime" name="time" placeholder="Flight Time"/>
-                </div>
-                <div class="form-group col-md-2">
-                    Price:
-                    <input type="text" class="form-control" id="newFlightPrice" name="price" placeholder="New Flight Price"/>
-                </div>
+            <div class="form-group col-md-3">
+                Starting Id Number:
+                <input type="text" class="form-control " id="startingIdNumber" name="startingIdNumber" placeholder="Starting Id Number" />
+            </div>
+            <div class="form-group col-md-3">
+                Ending Id Number:
+                <input type="text" class="form-control" id="endingIdNumber" name="endingIdNumber" placeholder="Ending Id Number" />
+            </div>
+            <div class="form-group col-md-2">
+                Flight Time:
+                <input type="text" class="form-control" id="newFlightTime" name="time" placeholder="Flight Time" />
+            </div>
+            <div class="form-group col-md-2">
+                Price:
+                <input type="text" class="form-control" id="newFlightPrice" name="price" placeholder="New Flight Price" />
+            </div>
             <div class="form-group col-md-2 bottom">
                 <button type="submit" class="btn btn-primary">Add Flight</button>
             </div>
@@ -83,16 +84,16 @@
         <div>
             <div class="form-inline">
                 <div class="form-group col-md-3">
-                    Country: 
-                    <input type="text" Name="Country" placeholder="Country" class="form-control"/>
+                    Country:
+                    <input type="text" Name="Country" placeholder="Country" class="form-control" />
                 </div>
                 <div class="form-group col-md-3">
                     Start City:
-                    <input type="text" class="form-control" id="st-flight" Name="StartCity" placeholder="Start Location"/>
+                    <input type="text" class="form-control" id="st-flight" Name="StartCity" placeholder="Start Location" />
                 </div>
                 <div class="form-group col-md-3">
                     Destination City:
-                    <input type="text" class="form-control" id="dt-flight" Name="DestinationCity" placeholder="Destination"/>
+                    <input type="text" class="form-control" id="dt-flight" Name="DestinationCity" placeholder="Destination" />
                 </div>
                 <div class="form-group col-md-3">
                     <button type="submit" id="searchFlights" class="btn btn-primary">Search</button>
@@ -101,7 +102,7 @@
         </div>
     </div>
 </form>
-<br/>
+<br />
 <div id="resultsTable">
 </div>
 @* This is a section for building scripts for the page. These are loaded at the end so JQuery is already loaded. *@
@@ -109,9 +110,9 @@
 
     <script type="text/javascript">
 
-        // This should be checked for correctness. 
+        // This should be checked for correctness.
         $(document).ready(function () {
-            
+
             $.ajax({
                 url: "/Home/SearchFlights",
                 data: $("#searchForm").serialize(),
@@ -121,7 +122,7 @@
                 }
             });
 
-            // Ajax method that calls the searching method, and repopulates the results of the table. 
+            // Ajax method that calls the searching method, and repopulates the results of the table.
             $('#searchFlights').on('click', function (event) {
                 event.preventDefault();
                 $.ajax({
