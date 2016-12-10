@@ -1,54 +1,6 @@
-﻿<head>
-    <style>
-        #banner {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            right: 0px;
-            width: 100%;
-            height: 200px;
-            z-index: -1;
-        }
-    </style>
-    <script type="text/javascript">
-        var picPaths = ['/Images/Paris_banner.jpg', '/Images/Egypt_banner.jpg', '/Images/Geneva_panorama_banner.jpg', '/Images/Seoul_Banner.jpg', '/Images/Venezuela_Banner.jpg'];
-            var curPic = -1;
-            //preload the images for smooth animation
-            var imgO = new Array();
-            for(i=0; i < picPaths.length; i++) {
-                imgO[i] = new Image();
-                imgO[i].src = picPaths[i];
-            }
-
-            function swapImage() {
-                curPic = (++curPic > picPaths.length-1)? 0 : curPic;
-                imgCont.src = imgO[curPic].src;
-                setTimeout(swapImage,4000);
-            }
-
-            window.onload=function() {
-                imgCont = document.getElementById('banner');
-                swapImage();
-            }
-    </script>
-
-</head>
-<body>
-    <img id="banner" src="" alt="Banner Img" />
-</body>
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-@{
-    ViewBag.Title = "Shopping Cart";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
+﻿<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
 <h2>ShoppingCart</h2>
 
 <div id="bookedFlights">
@@ -56,109 +8,188 @@
 
 </div>
 <div class="container">
-    <form class="form-horizontal" role="form">
+    <form class="form-horizontal" id="ShoppingCart" action="" method="post">
         <fieldset>
             <legend>Contact Information</legend>
-            <label for="customer-email" class="col-xs-3 control-label">Email Address</label>
-            <div class="col-sm-9">
-                <input type="email" class="form-control" id="customer-email" name="customer-email" aria-describedby="emailHelp">
+            <div class="form-group">
+                <label for="customer-email" class="col-xs-3 control-label">Email Address</label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" name="customer-email" aria-describedby="emailHelp" required>
+                </div>
             </div>
-
-            <label for="customer-phone-num" class="col-xs-3 control-label">Phone Number</label>
-            <div class="col-xs-9">
-                <input class="form-control" type="tel" id="customer-phone-num" name="customer-phone-num">
+            <div class="form-group">
+                <label for="phone" class="col-xs-3 control-label">Phone Number</label>
+                <div class="col-xs-9">
+                    <input type="tel" class="form-control"  name="phone" required>
+                </div>
             </div>
-
-            <label for="customer-address" class="col-xs-3 control-label">Address</label>
-            <div class="col-xs-9">
-                <input class="form-control" type="text" id="customer-address" name="customer-address">
+            <div class="form-group">
+                <label for="customer-address" class="col-xs-3 control-label">Address</label>
+                <div class="col-xs-9">
+                    <input class="form-control" type="text" name="address" required>
+                </div>
             </div>
-
-            <label for="customer-zip" class="col-xs-3 control-label">Zipcode</label>
-            <div class="col-xs-9">
-                <input class="form-control" type="text" id="customer-zip" name="customer-zip">
+            <div class="form-group">
+                <label form="customer-city" class="col-xs-3 control-label">City</label>
+                <div class="col-xs-9">
+                    <input class="form-control" type="text" name="city" required/>
+                </div>
             </div>
-
-            <label for="state" class="col-xs-3 control-label">State</label>
-            <div class="col-xs-9">
-                <input class="form-control" type="text" id="state" name="state">
+            <div class="form-group">
+                <label for="customer-zip" class="col-xs-3 control-label">Zipcode</label>
+                <div class="col-xs-9">
+                    <input class="form-control" type="text" id="customer-zip" name="customer-zip" required>
+                </div>
             </div>
-
-            <label for="country" class="col-xs-3 control-label">Country</label>
-            <div class="col-xs-9">
-                <input class="form-control" type="text" id="country" name="country">
+            <div class="form-group">
+                <label for="state" class="col-xs-3 control-label">State</label>
+                <div class="col-xs-9">
+                    <input class="form-control" type="text" id="state" name="state" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="country" class="col-xs-3 control-label">Country</label>
+                <div class="col-xs-9">
+                    <input class="form-control" type="text" id="country" name="country" required>
+                </div>
             </div>
 
         </fieldset>
-    </form>
-    <div class="container">
-        <form class="form-horizontal" role="form">
-            <fieldset>
-                <legend>Payment</legend>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label" for="card-holder-name">Name on Card</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
-                    </div>
+    
+        <fieldset>
+           <legend>Payment</legend>
+             <div class="form-group">
+                <label class="col-sm-3 control-label" for="card-holder-name">Name on Card</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name" required>
                 </div>
-                <div class="form-group">
+             </div>
+             <div class="form-group">
                     <label class="col-sm-3 control-label" for="card-number">Card Number</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number">
+                        <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number" required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label" for="expiry-month">Expiration Date</label>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
-                                    <option>Month</option>
-                                    <option value="01">Jan (01)</option>
-                                    <option value="02">Feb (02)</option>
-                                    <option value="03">Mar (03)</option>
-                                    <option value="04">Apr (04)</option>
-                                    <option value="05">May (05)</option>
-                                    <option value="06">June (06)</option>
-                                    <option value="07">July (07)</option>
-                                    <option value="08">Aug (08)</option>
-                                    <option value="09">Sep (09)</option>
-                                    <option value="10">Oct (10)</option>
-                                    <option value="11">Nov (11)</option>
-                                    <option value="12">Dec (12)</option>
-                                </select>
-                            </div>
-                            <div class="col-xs-3">
-                                <select class="form-control" name="expiry-year">
-                                    <option value="13">2013</option>
-                                    <option value="14">2014</option>
-                                    <option value="15">2015</option>
-                                    <option value="16">2016</option>
-                                    <option value="17">2017</option>
-                                    <option value="18">2018</option>
-                                    <option value="19">2019</option>
-                                    <option value="20">2020</option>
-                                    <option value="21">2021</option>
-                                    <option value="22">2022</option>
-                                    <option value="23">2023</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label" for="cvv">Card CVV</label>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control" name="cvv" id="cvv" placeholder="Security Code">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <button type="button" class="btn btn-success">Pay Now</button>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
-    </div>
+             </div>
+             <div class="form-group">
+                 <label class="col-sm-3 control-label" for="expiry-month">Expiration Date</label>
+                 <div class="col-sm-9">
+                     <div class="row">
+                         <div class="col-xs-3">
+                             <select class="form-control col-sm-2" name="expiry-month" id="expiry-month" required>
+                                 <option>Month</option>
+                                 <option value="01">Jan (01)</option>
+                                 <option value="02">Feb (02)</option>
+                                 <option value="03">Mar (03)</option>
+                                 <option value="04">Apr (04)</option>
+                                 <option value="05">May (05)</option>
+                                 <option value="06">June (06)</option>
+                                 <option value="07">July (07)</option>
+                                 <option value="08">Aug (08)</option>
+                                 <option value="09">Sep (09)</option>
+                                 <option value="10">Oct (10)</option>
+                                 <option value="11">Nov (11)</option>
+                                 <option value="12">Dec (12)</option>
+                             </select>
+                         </div>
+                         <div class="col-xs-3">
+                             <select class="form-control" name="expiry-year">
+                                 <option value="13">2013</option>
+                                 <option value="14">2014</option>
+                                 <option value="15">2015</option>
+                                 <option value="16">2016</option>
+                                 <option value="17">2017</option>
+                                 <option value="18">2018</option>
+                                 <option value="19">2019</option>
+                                 <option value="20">2020</option>
+                                 <option value="21">2021</option>
+                                 <option value="22">2022</option>
+                                 <option value="23">2023</option>
+                             </select>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="form-group">
+                 <label class="col-sm-3 control-label" for="cvv">Card CVV</label>
+                 <div class="col-sm-3">
+                     <input type="text" class="form-control" name="cvv" id="cvv" placeholder="Security Code" required>
+                 </div>
+             </div>
+             <div class="form-group">
+                 <div class="col-sm-offset-3 col-sm-9">
+                     <button type="submit" class="btn btn-warning" >Pay Now <span class="glyphicon glyphicon-send"></span></button>
+                 </div>
+             </div>
+         </fieldset>
+     </form>
 </div>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        var validator = $("#ShoppingCart").bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please supply your email address'
+                        },
+                        emailAddress: {
+                            message: 'Please supply a valid email address'
+                        }
+                    }
+                },
+                phone: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please supply your phone number'
+                        },
+                        phone: {
+                            country: 'US',
+                            message: 'Please supply a vaild phone number with area code'
+                        }
+                    }
+                },
+                address: {
+                    validators: {
+                        stringLength: {
+                            min: 8,
+                        },
+                        notEmpty: {
+                            message: 'Please supply your street address'
+                        }
+                    }
+                },
+                state: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please select your state'
+                        }
+                    }
+                },
+            }
+        })
+            .on('success.form.bv', function(e) {
+                $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                $('#ShoppingCart').data('bootstrapValidator').resetForm();
+ 
+                // Prevent form submission
+                e.preventDefault();
+ 
+                // Get the form instance
+                var $form = $(e.target);
+ 
+                // Get the BootstrapValidator instance
+                var bv = $form.data('bootstrapValidator');
+ 
+                // Use Ajax to submit form data
+                $.post($form.attr('action'), $form.serialize(), function(result) {
+                    console.log(result);
+                }, 'json');
+            });
+    });
+</script>
