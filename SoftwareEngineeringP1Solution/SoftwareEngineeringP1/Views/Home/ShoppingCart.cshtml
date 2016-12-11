@@ -4,12 +4,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>ShoppingCart</h2>
+<h1>ShoppingCart</h1>
+<h2>
+    <script type="text/javascript">
+        document.write(localStorage.getItem('nametime'));
+    </script>
+</h2>
+<h3>
+    <table class="table table-condensed">
+        <tr>
+            <th>Departure</th>
+            <th>Destination</th>
+            <th>Departure Time</th>
+            <th>Arrival Time</th>
+            <th>Tickets</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>
+                <script type="text/javascript">
+                    document.write(localStorage.getItem('source'));
+                </script>
+            </td>
+            <td>
+                <script type="text/javascript">
+                    document.write(localStorage.getItem('destination'));
+                </script>
+            </td>
+            <td>
+                <script type="text/javascript">
+                    document.write(localStorage.getItem('depart'));
+                </script>
+            </td>
+            <td>
+                <script type="text/javascript">
+                    document.write(localStorage.getItem('arrival'));
+                </script>
+            </td>
+            <td>
+                <script type="text/javascript">
+                    document.write(localStorage.getItem('ticketNumber'));
+                </script>
+            </td>
+            <td>
+                <script type="text/javascript">
+                    document.write(localStorage.getItem('price'));
+                </script>
+            </td>
+        </tr>
+    </table>
+</h3>
 
-<div id="bookedFlights">
-
-
-</div>
 <div class="container">
     <form class="form-horizontal" role="form">
         <fieldset>

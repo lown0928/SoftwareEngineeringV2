@@ -5,29 +5,31 @@
         <div class="modal-content" id="modelBody">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <div class="h4"> @Model.Flight.Name - @Model.Flight.DepartureTime.ToString("d")</div>
+                <div class="h4" id="Name&Time" value="@Model.Flight.Name - @Model.Flight.DepartureTime.ToString("d")"> @Model.Flight.Name - @Model.Flight.DepartureTime.ToString("d")</div>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-2"><span class="">To: </span></div> 
-                    <div class="col-md-4 text-right h4">@Model.Flight.SourceAirport.Name</div>
-
                     <div class="col-md-2"><span class="">From: </span></div> 
-                    <div class="col-md-4 text-right h4">@Model.Flight.DestinationAirport.Name</div>  
+                    <div class="col-md-4 text-right h4" id="sourceAirport" value="@Model.Flight.SourceAirport.Name">@Model.Flight.SourceAirport.Name</div>
+
+                    <div class="col-md-2"><span class="">To: </span></div> 
+                    <div class="col-md-4 text-right h4" id="destinationAirport" value="@Model.Flight.DestinationAirport.Name">@Model.Flight.DestinationAirport.Name</div>
                 </div>
                 <div class="row">
                     <div class="col-md-3"><span class="">Departure:</span></div>
-                    <div class="col-md-3 h5 text-right">@Model.Flight.DepartureTime.ToString("hh:mm tt")</div>
+                    <div class="col-md-3 h5 text-right" id="departTime" value="@Model.Flight.DepartureTime.ToString("hh:mm tt")">@Model.Flight.DepartureTime.ToString("hh:mm tt")</div>
                     
                     <div class="col-md-3"><span class="">Arrival:</span></div>
-                    <div class="col-md-3 h5 text-right">@Model.Flight.ArrivalTime.ToString("hh:mm tt")</div>
+                    <div class="col-md-3 h5 text-right" id="arrivalTime" value="@Model.Flight.ArrivalTime.ToString("hh:mm tt")">@Model.Flight.ArrivalTime.ToString("hh:mm tt")</div>
                 </div>
                 <br/>
-                <div class="row">
-                    <div class="col-md-2 col-md-offset-10 text-right h3">$@Model.Flight.Price</div>
+                <div class="row">                    
+                    Tickets:
+                    <input id="ticketNum" type="number" pattern="\d*" min="1" max="20" value="1" />
+                    <div class="col-md-2 col-md-offset-10 text-right h3" id="price" value="$@Model.Flight.Price">$@Model.Flight.Price</div>
                 </div>
             </div>
-            
+
             @* Fake footer *@
             <div class="row" style="margin: 5px;">
                 <div class="col-md-7 col-md-offset-4 text-right">
@@ -50,6 +52,46 @@
 </div>
 
 <script type="text/javascript">
+    $(document).ready(function()
+    {
+        var NameTime = document.getElementById('Name&Time').getAttribute('value');
+        var sourceAirport = document.getElementById('sourceAirport').getAttribute('value');
+        var destinationAirport = document.getElementById('destinationAirport').getAttribute('value');
+        var departTime = document.getElementById('departTime').getAttribute('value');
+        var arrivalTime = document.getElementById('arrivalTime').getAttribute('value');
+        var price = document.getElementById('price').getAttribute('value');
 
+        localStorage.setItem('nametime', NameTime);
+        localStorage.setItem('source', sourceAirport);
+        localStorage.setItem('destination', destinationAirport);
+        localStorage.setItem('depart', departTime);
+        localStorage.setItem('arrival', arrivalTime);
+        localStorage.setItem('price', price);
+    });
+
+    if(document.getElementById('ticketNum').getAttribute('value') == 1){       
+        localStorage.setItem('ticketNumber', '1');
+    }
+
+    document.getElementById("ticketNum").addEventListener("change", onInputChanged);
+	document.getElementById("ticketNum").addEventListener("keypress", onKeyDown);
+	
+	function onInputChanged() {
+	    var value = document.getElementById("ticketNum").value;
+	    document.getElementById('price').innerHTML = '$' + @Model.Flight.Price * value;
+	    price = document.getElementById('price').innerHTML;
+	    localStorage.setItem('price', price);
+	    localStorage.setItem('ticketNumber', value);
+		console.log(value);
+	}
+	
+	function onKeyDown() {
+	    var value = document.getElementById("ticketNum").value;
+	    document.getElementById('price').innerHTML = '$' + @Model.Flight.Price * value;
+	    price = document.getElementById('price').innerHTML;
+	    localStorage.setItem('price', price);
+	    localStorage.setItem('ticketNumber', value);
+		console.log(value);
+	}
 </script>
 
