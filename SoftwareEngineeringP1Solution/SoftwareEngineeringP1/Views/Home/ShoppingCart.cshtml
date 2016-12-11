@@ -1,4 +1,51 @@
-﻿<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+﻿<head>
+    <style>
+        #banner {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            width: 100%;
+            height: 200px;
+            z-index: -1;
+        }
+    </style>
+    <script type="text/javascript">
+        var picPaths = ['/Images/Bahamas_banner.jpg', '/Images/Frankfurt_banner.jpg', '/Images/Rio-banner.jpg', '/Images/India_banner.jpeg', '/Images/washington-dc-skyline.jpg'];
+            var curPic = -1;
+            //preload the images for smooth animation
+            var imgO = new Array();
+            for(i=0; i < picPaths.length; i++) {
+                imgO[i] = new Image();
+                imgO[i].src = picPaths[i];
+            }
+
+            function swapImage() {
+                curPic = (++curPic > picPaths.length-1)? 0 : curPic;
+                imgCont.src = imgO[curPic].src;
+                setTimeout(swapImage,4000);
+            }
+
+            window.onload=function() {
+                imgCont = document.getElementById('banner');
+                swapImage();
+            }
+    </script>
+
+</head>
+<body>
+    <img id="banner" src="" alt="Banner Img" />
+</body>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
 
