@@ -198,6 +198,7 @@
     <Compile Include="Models\Flight.cs" />
     <Compile Include="Models\FlightUserPageForm.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Passenger.cs" />
     <Compile Include="Models\PenguinFlightsDataContext.cs" />

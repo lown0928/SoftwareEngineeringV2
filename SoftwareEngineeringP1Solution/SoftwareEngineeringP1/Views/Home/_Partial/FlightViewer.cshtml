@@ -42,13 +42,13 @@
                             <button type="button" data-id="@Model.Flight.Id" class="btn btn-default editFlightBtn"><span class="glyphicon glyphicon-edit"></span>Edit</button>
                         </div>
                     }
-                    @if (User.IsInRole("Registereduser") || User.IsInRole("Admin"))
+                    @if (User.IsInRole("registeredUser") || User.IsInRole("Admin"))
                     {
                         <div class="form-group col-sm-3">
                             <a href="~/Home/ShoppingCart" type="button" class="btn btn-success">Add to Shopping Cart</a>
                         </div>
                     }
-                    @if (!User.IsInRole("Registereduser") && !User.IsInRole("Admin"))
+                    @if (!User.IsInRole("registeredUser") && !User.IsInRole("Admin"))
                     {
                         <div class="form-group col-sm-3">
                             <a href="~/Account/Login" type="button" class="btn btn-success">Add to Shopping Cart</a>
