@@ -20,10 +20,15 @@ namespace SoftwareEngineeringP1.Controllers
             //}
             return View();
         }
-        
-        public ActionResult ShoppingCart(List<Flight> flights)
+
+        public ActionResult ShoppingCart()
         {
-            return View(flights);
+            return View();
+        }
+
+        public ActionResult Admin()
+        {
+            return View();
         }
 
         [Authorize(Roles = "Admin")]
