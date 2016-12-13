@@ -274,6 +274,7 @@
         notASubmit = function() {
             if ($myForm[0].checkValidity()){
                 alert('Your flight has been booked.');
+                event.preventDefault();
                 location.href = '/Home';
             }
         }
